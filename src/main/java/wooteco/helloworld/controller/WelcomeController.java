@@ -1,14 +1,21 @@
 package wooteco.helloworld.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import wooteco.helloworld.domain.User;
 
+@Controller
 public class WelcomeController {
     /**
      * GET /welcome
      */
+    @ResponseBody
+    @GetMapping("/welcome") //맵핑을 한것은 요청을 처리할 준비가 됐다는 의미
     public String welcome() {
         return "welcome";
     }
@@ -16,13 +23,16 @@ public class WelcomeController {
     /**
      * GET /welcome-page
      */
-    public String welcomePage() {
+    @GetMapping("/welcome-page")
+    public String welcomePage(@RequestParam(defaultValue = "d") String name, Model model) {
+        model.addAttribute("name", name);
         return "welcome";
     }
 
     /**
      * GET /welcome-user
      */
+    @GetMapping("/welcome-user")
     public ResponseEntity welcomeUser() {
         return ResponseEntity.ok(new User("브라운", "brown@email.com", 20));
     }

@@ -1,5 +1,8 @@
 package wooteco.helloworld.domain;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class User {
     private Long id;
     private String name;
@@ -29,5 +32,21 @@ public class User {
 
     public Integer getAge() {
         return age;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }
